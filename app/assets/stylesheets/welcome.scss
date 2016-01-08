@@ -19,10 +19,16 @@ h1 {
   height: 200px ;
    }
 
-   section {
+  .section {
   background: #5998ff ;
   border-style: solid ;
   border-width: 5px ;
   margin: 5px ;
   padding: 5px ;
+}
+
+  .social-btn {
+color: red;
+padding: 5px;
+text-align: center;
 }

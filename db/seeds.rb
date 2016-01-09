@@ -21,6 +21,7 @@ posts = Post.all
   )
 end
 
+Post.find_or_create_by(title: "Steelers V Bengals", body: "Will the Steel Curtain drop tonight?")
 
 puts "Seed finished"
 puts "#{Post.count} posts created"

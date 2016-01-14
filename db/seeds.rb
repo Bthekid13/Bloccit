@@ -22,13 +22,21 @@ posts = Post.all
 end
 
 #Creates Advertisements
-10.times do
-  Advertisement.create!(
+# 10.times do
+#   Advertisement.create!(
+#
+#   title: RandomData.random_sentence,
+#   copy: RandomData.random_paragraph,
+#
+#   )
+# end
 
+#Creates Q's
+5.times do
+  Question.create!(
   title: RandomData.random_sentence,
-  copy: RandomData.random_paragraph,
-  price: 99
-  
+  body: RandomData.random_paragraph
+
   )
 end
 
@@ -36,4 +44,4 @@ end
 puts "Seed finished"
 puts "#{Post.count} posts were created"
 puts "#{Comment.count} comments were created"
-puts "#{Advertisement.count} Ads were created"
+puts "#{Question.count} Q's were asked"

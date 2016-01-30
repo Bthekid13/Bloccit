@@ -31,3 +31,5 @@ gem 'jquery-rails'
 gem 'turbolinks'
 #bootstrap and...well, sass
 gem 'bootstrap-sass'
+#devise––handles the sign in stuff
+gem 'devise'

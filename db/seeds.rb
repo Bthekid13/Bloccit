@@ -24,6 +24,7 @@ topics = Topic.all
 end
 posts = Post.all
 
+
 # Create Comments
 # #3
 100.times do

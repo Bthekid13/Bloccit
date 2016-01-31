@@ -33,3 +33,5 @@ gem 'turbolinks'
 gem 'bootstrap-sass'
 #devise––handles the sign in stuff
 gem 'devise'
+#figaro––stores confidential info about the app "API keys, passwords, etc."
+gem 'figaro', '1.0'

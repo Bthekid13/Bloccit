@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
 
+  skip_before_action :flash_attack
 
   def show
     @post = Post.find(params[:id])
@@ -58,5 +59,11 @@ class PostsController < ApplicationController
       flash.now[:alert] = "There was an error deleting the post."
       render :show
     end
+  end
+
+  private
+
+  def flash_attack
+    flash[:notice] = "Wally West is pissed."
   end
 end

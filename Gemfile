@@ -29,9 +29,14 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
-#bootstrap and...well, sass
+# bootstrap and...well, sass
 gem 'bootstrap-sass'
+<<<<<<< HEAD
 #devise––handles the sign in stuff
 gem 'devise'
 #figaro––stores confidential info about the app "API keys, passwords, etc."
 gem 'figaro', '1.0'
+=======
+# Ecrypts stuff
+gem 'bcrypt'
+>>>>>>> checkpoint-36

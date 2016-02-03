@@ -31,5 +31,5 @@ gem 'jquery-rails'
 gem 'turbolinks'
 # bootstrap and...well, sass
 gem 'bootstrap-sass'
-# Ecrypts stuff
+# Enrypts stuff
 gem 'bcrypt'

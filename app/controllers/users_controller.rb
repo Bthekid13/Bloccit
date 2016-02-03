@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def new
   @user = User.new
-end
+  end
 
   def create
     @user = @user.new
@@ -28,3 +28,4 @@ end
   def destroy
 
   end
+end

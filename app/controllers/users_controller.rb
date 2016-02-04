@@ -3,10 +3,10 @@ class UsersController < ApplicationController
 
   def new
   @user = User.new
-end
+  end
 
   def create
-    @user = @user.new
+    @user = User.new
     @user.name = params[:user][:name]
     @user.email = params[:user][:email]
     @user.password = params[:user][:password]
@@ -28,3 +28,13 @@ end
   def destroy
 
   end
+
+  def confirm
+    @user = User.new
+    @user.name = params[:user][:name]
+    @user.email = params[:user][:email]
+    @user.password = params[:user][:password]
+    @user.password_confirmation = params[:user][:password_confirmation]
+
+  end
+end

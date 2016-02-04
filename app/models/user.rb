@@ -1,10 +1,16 @@
 class User < ActiveRecord::Base
 <<<<<<< HEAD
+<<<<<<< HEAD
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 =======
+=======
+
+
+
+>>>>>>> checkpoint-38
   before_save {self.email = email.downcase}
 
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -21,5 +27,18 @@ class User < ActiveRecord::Base
               format: {with: EMAIL_REGEX}
 
 has_secure_password
+<<<<<<< HEAD
 >>>>>>> checkpoint-36
+=======
+
+  def format_name
+    if name
+      name_a = []
+      name.split.each do |name|
+        name_a << name.capitalize
+      end
+      self.name = name_a.join(" ")
+    end
+  end
+>>>>>>> checkpoint-38
 end

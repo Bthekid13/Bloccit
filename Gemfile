@@ -31,16 +31,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 # bootstrap and...well, sass
 gem 'bootstrap-sass'
-<<<<<<< HEAD
-<<<<<<< HEAD
-#devise––handles the sign in stuff
-gem 'devise'
 #figaro––stores confidential info about the app "API keys, passwords, etc."
 gem 'figaro', '1.0'
-=======
-# Ecrypts stuff
-=======
 # Enrypts stuff
->>>>>>> checkpoint-38
 gem 'bcrypt'
->>>>>>> checkpoint-36

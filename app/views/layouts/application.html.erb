@@ -16,14 +16,11 @@
 
     <div class="pull-right user-info">
       <% if current_user %>
-        <%= image_tag avatar_url(current_user), class: gravatar %>
-        Hello <%= current_user.email %>! <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+        <%= current_user.name %> - <%= link_to "Sign Out", session_path(current_user), method: :delete %>
       <% else %>
-        <%= link_to "Sign In", new_user_session_path %> or
-        <%= link_to "Sign Up", new_user_registration_path %>
-      <% end %>
-    </div>
-
+        <%= link_to "Sign In", new_session_path %> | |
+        <%= link_to "Sign Up", new_user_path %>
+        <% end %>
     </div>
   </ul>
 
@@ -43,6 +40,8 @@
     <%= flash[:alert] %>
   </div>
   <% end %>
+
+
 
 <%= yield %>
 </div>

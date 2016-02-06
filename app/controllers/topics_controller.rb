@@ -29,7 +29,6 @@ class TopicsController < ApplicationController
 
   def update
     @topic = Topic.find(params[:id])
-
     @topic.assign_attributes(topic_params)
 
     if @topic.save
@@ -57,5 +56,7 @@ class TopicsController < ApplicationController
 
   def topic_params
     params.require(:topic).permit(:title, :description, :public)
+  end
+    params.require(:topic).permit(:name, :description, :public)
   end
 end

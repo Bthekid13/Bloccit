@@ -10,6 +10,18 @@ include RandomData
    )
  end
  users = User.all
+#Creates users
+
+5.times do
+  User.create!(
+
+  name: RandomData.random_name,
+  email: RandomData.random_email,
+  password: "remington"
+  )
+
+end
+users = User.all
 
 # Creates Topics
 
@@ -53,6 +65,10 @@ user = User.first
    password: 'mustang'
  )
 
+user.update_attributes!(
+   email: 'brokennightmares@yahoo.com',
+   password: 'mustang'
+ )
 
 puts "Seed finished"
 puts "#{User.count} users were created"

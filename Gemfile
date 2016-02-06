@@ -31,6 +31,8 @@ gem 'jquery-rails'
 gem 'turbolinks'
 # bootstrap and...well, sass
 gem 'bootstrap-sass'
+#figaro––stores confidential info about the app "API keys, passwords, etc."
+gem 'figaro', '1.0'
 # Enrypts stuff
 gem 'bcrypt'
 #devise

@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
   has_many :posts
-  
+
+
+  has_many :posts
+
   before_save {self.email = email.downcase}
 
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -18,6 +21,7 @@ class User < ActiveRecord::Base
 
 has_secure_password
 
+private
   def format_name
     if name
       name_a = []

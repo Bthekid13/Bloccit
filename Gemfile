@@ -35,5 +35,3 @@ gem 'bootstrap-sass'
 gem 'figaro', '1.0'
 # Enrypts stuff
 gem 'bcrypt'
-#devise
-gem 'devise'

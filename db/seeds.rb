@@ -1,5 +1,15 @@
 include RandomData
 
+# Create Users
+ 5.times do
+   User.create!(
+ # #3
+   name:     RandomData.random_name,
+   email:    RandomData.random_email,
+   password: RandomData.random_sentence
+   )
+ end
+ users = User.all
 #Creates users
 
 5.times do
@@ -50,6 +60,11 @@ posts = Post.all
 end
 
 user = User.first
+ user.update_attributes!(
+   email: 'billyburke13@gmail.com', # replace this with your personal email
+   password: 'mustang'
+ )
+
 user.update_attributes!(
    email: 'brokennightmares@yahoo.com',
    password: 'mustang'

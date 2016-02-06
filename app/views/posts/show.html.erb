@@ -8,6 +8,13 @@
  <div class="row">
   <div class="col-md-8">
     <p><%= @post.body %></p>
+    <div>
+      <h3>Comment Section <small>(Please don't write anything your dog would be ashamed of.)</small></h3>
+      <%= render @post.comments %>
+    </div>
+    <% if current_user %>
+      <%= render 'comments/form', comment: Comment.new, post: @post %>
+    <% end %>
   </div>
   <div class="col-md-4">
 

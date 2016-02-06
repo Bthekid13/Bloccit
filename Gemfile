@@ -33,3 +33,5 @@ gem 'turbolinks'
 gem 'bootstrap-sass'
 # Enrypts stuff
 gem 'bcrypt'
+#devise
+gem 'devise'

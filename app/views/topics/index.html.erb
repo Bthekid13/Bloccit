@@ -1,7 +1,20 @@
 <h1> Topics </h1>
 
 <div class="row">
-  <%= render "topic" %>
+  <div class="col-md-8">
+    <% @topics.each do |topic| %>
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading">
+          <%= link_to topic.name, topic %>
+        </h4>
+        <small>
+          <%= topic.description %>
+        </small>
+      </div>
+    </div>
+    <% end %>
+  </div>
   <% if user_is_authorized_for_topics? %>
   <div class="col-md-4">
     <%= link_to "New Topic", new_topic_path, class: 'btn btn-success' %>

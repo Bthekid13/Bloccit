@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'labels/show'
+
   root to: 'welcome#index'
 
   # This means that users can just type /about instead of /welcome/about

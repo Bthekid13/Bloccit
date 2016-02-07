@@ -1,2 +1,15 @@
-<h1>Labels#show</h1>
-<p>Find me in app/views/labels/show.html.erb</p>
+<div class="row">
+    <div class="col-md-8">
+      <h1>Label: <%= @label.name %></h1>
+      <% @label.topics.each do |topic| %>
+      <div>
+        Topic: <%= link_to topic.name, topic %>
+      </div>
+      <% end %>
+
+      <% @label.posts.each do |post| %>
+        Post: <%= link_to post.name, topic_post_path(post.topic, post) %>
+      </div>
+      <% end %>
+    </div>
+  </div>

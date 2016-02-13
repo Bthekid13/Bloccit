@@ -52,13 +52,8 @@ posts = Post.all
   )
 end
 
-#Create an Admin
-admin = User.create!(
-  name: "Wil Burke",
-  email: "billyburke13@gmail.com",
-  password: "mustang",
-  role: 'admin'
-)
+
+
 
 # Create a member
 member = User.create!(
@@ -74,7 +69,13 @@ member = User.create!(
   password: "yuuuge",
   role: 'moderator'
 )
-
+#Create an Admin
+admin = User.create!(
+  name: "Wil Burke",
+  email: "billyburke13@gmail.com",
+  password: "mustang",
+  role: 'admin'
+)
 
 
 puts "Seed finished"

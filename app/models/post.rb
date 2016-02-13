@@ -3,6 +3,7 @@ class Post < ActiveRecord::Base
   belongs_to :user
   has_many :votes, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   has_many :labelings, as: :labelable
   has_many :labels, through: :labelings
@@ -37,7 +38,7 @@ class Post < ActiveRecord::Base
 
   private
 
-  def after_create
+  def create_vote
     user.votes.create(value: 1, post: self)
   end
 end

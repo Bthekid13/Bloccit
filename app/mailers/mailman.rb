@@ -12,4 +12,14 @@ class Mailman < ApplicationMailer
 
     mail(to: user.email, subject: "New comment on #{post.title}")
   end
+
+  def new_post(post)
+    headers["Message-ID"]   = "<posts/#{post.id}@murmuring-earth-8498.example"
+    headers["In-Reply-To"]  = "<post/#{post.id}@murmuring-earth-8498.example"
+    headers["References"]   = "<post/#{post.id}@murmuring-earth-8498.example"
+
+    @post = post
+
+    mail(to: post.user.email, subject: "you're following on #{post.title}")
+  end
 end

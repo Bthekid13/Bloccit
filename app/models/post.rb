@@ -9,6 +9,7 @@ class Post < ActiveRecord::Base
   has_many :labels, through: :labelings
 
   after_create :create_vote
+  after_create :create_favorite
 
   default_scope { order('rank DESC') }
 
@@ -41,4 +42,10 @@ class Post < ActiveRecord::Base
   def create_vote
     user.votes.create(value: 1, post: self)
   end
+
+  def create_favorite
+    Favorite.create(post: self, user: self.user)
+    Mailman.new_post(self).deliver_now
+  end
+
 end

@@ -28,13 +28,15 @@ topics = Topic.all
 # Create Posts
 50.times do
 # #1
-  Post.create!(
+post = Post.create!(
 # #2
     user:   users.sample,
     topic:  topics.sample,
     title:  RandomData.random_sentence,
     body:   RandomData.random_paragraph
   )
+post.update_attribute(:created_at, rand(10.minutes .. 1.year).ago)
+rand(1..5).times {post.votes.create!(value: [-1, 1].sample, user: users.sample)}
 end
 posts = Post.all
 
@@ -44,19 +46,14 @@ posts = Post.all
 100.times do
   Comment.create!(
 # #4
-    user: users.sample, 
+    user: users.sample,
     post: posts.sample,
     body: RandomData.random_paragraph
   )
 end
 
-#Create an Admin
-admin = User.create!(
-  name: "Wil Burke",
-  email: "billyburke13@gmail.com",
-  password: "mustang",
-  role: 'admin'
-)
+
+
 
 # Create a member
 member = User.create!(
@@ -72,7 +69,13 @@ member = User.create!(
   password: "yuuuge",
   role: 'moderator'
 )
-
+#Create an Admin
+admin = User.create!(
+  name: "Wil Burke",
+  email: "billyburke13@gmail.com",
+  password: "mustang",
+  role: 'admin'
+)
 
 
 puts "Seed finished"
@@ -80,3 +83,4 @@ puts "#{User.count} users were created"
 puts "#{Topic.count} topics were created"
 puts "#{Post.count} posts were created"
 puts "#{Comment.count} comments were created"
+puts "#{Vote.count} votes were cast"

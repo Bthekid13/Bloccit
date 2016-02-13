@@ -4,12 +4,10 @@
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 </head>
 <body>
-  <h1>Your following "<%= @post.title %>" You'll be notified for all updates. If you don't want to receive notifications,
-    unfavorite your <%= link_to "post", topic_post_url(@post.topic, @post) %>.</h1>
+  <h1>You;re following "<%= @post.title %>>" want to unfollow? Unfavorite at
+    <%= link_to "post", topic_post_url(@post.topic, @post) %>.</h1>
   <p>
     <%= link_to "View Post on site", topic_post_url(@post.topic, @post) %>
-  </p>
-  <p>
   </p>
 </body>
 </html>

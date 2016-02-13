@@ -11,6 +11,7 @@ class Post < ActiveRecord::Base
   after_create :create_vote
   after_create :create_favorite
 
+
   default_scope { order('rank DESC') }
 
 
@@ -47,5 +48,3 @@ class Post < ActiveRecord::Base
     Favorite.create(post: self, user: self.user)
     Mailman.new_post(self).deliver_now
   end
-
-end

@@ -36,8 +36,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    arel (6.0.3)
-    autoprefixer-rails (6.3.3)
+    arel (6.0.3)s
       execjs
       json
     bcrypt (3.1.10)
@@ -53,13 +52,6 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.0)
-      bcrypt (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 3.2.6, < 5)
-      responders
-      thread_safe (~> 0.1)
-      warden (~> 1.2.3)
-
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.6.0)

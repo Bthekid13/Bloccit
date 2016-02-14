@@ -2,12 +2,8 @@ class User < ActiveRecord::Base
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :votes, dependent: :destroy
-<<<<<<< HEAD
-  # has_many :favorites, dependent: :destroy
-=======
-  has_many :favorites, dependent: :destroy
 
->>>>>>> checkpoint-44
+  has_many :favorites, dependent: :destroy
 
 
   before_save {self.email = email.downcase}

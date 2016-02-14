@@ -11,12 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20160211000251) do
-=======
-ActiveRecord::Schema.define(version: 20160211195826) do
->>>>>>> checkpoint-44
 
+ActiveRecord::Schema.define(version: 20160211195826) do
+  
   create_table "comments", force: :cascade do |t|
     t.text     "body"
     t.integer  "post_id"

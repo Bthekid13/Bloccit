@@ -63,10 +63,6 @@ RSpec.describe Post, type: :model do
         post.update_rank
         expect(post.rank).to eq (post.points + (post.created_at - Time.new(1970)) / 1.day.seconds )
       end
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> checkpoint-44
 
       it "updates the rank when an up vote is created" do
         old_rank = post.rank
@@ -97,10 +93,4 @@ RSpec.describe Post, type: :model do
     end
 
   end
-<<<<<<< HEAD
-=======
->>>>>>> checkpoint-43
-=======
->>>>>>> checkpoint-44
-
 end

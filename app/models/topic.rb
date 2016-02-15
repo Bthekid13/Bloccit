@@ -10,17 +10,5 @@ class Topic < ActiveRecord::Base
   validates :description, length: {minimum: 10}, presence: true
 
 
-    def up_votes
-      votes.where(value: 1).count
-    end
-
-    def down_votes
-      votes.where(value: -1).count
-    end
-
-    def points
-      votes.sum(:value)
-    end
-
 
 end

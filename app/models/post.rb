@@ -48,3 +48,4 @@ class Post < ActiveRecord::Base
     Favorite.create(post: self, user: self.user)
     Mailman.new_post(self).deliver_now
   end
+end

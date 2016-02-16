@@ -22,5 +22,4 @@ class Mailman < ApplicationMailer
 
     mail(to: post.user.email, subject: "New comment on #{post.title}")
   end
-
 end

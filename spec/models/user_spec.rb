@@ -123,4 +123,12 @@ end
       expect(known_user.avatar_url(48)).to eq(expected_gravatar)
     end
   end
+  describe "#generate_auth_token" do
+    it "creates a token" do
+      expect(user.auth_token).to_not be_nil
+    end
+  end
+
+
+
 end

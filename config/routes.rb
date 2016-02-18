@@ -2,6 +2,13 @@ Rails.application.routes.draw do
 
   root to: 'welcome#index'
 
+  namespace :api do
+    namespace :v1 do
+      resources :users, only: [:index, :show]
+      resources :topics, only: [:index, :show]
+    end
+  end
+
   # This means that users can just type /about instead of /welcome/about
   get 'about' => 'welcome#about'
 

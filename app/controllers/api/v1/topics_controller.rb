@@ -5,12 +5,12 @@ class Api::V1::TopicsController < Api::V1::BaseController
   def index
     topics = Topics.all
 
-    render json: topic.to_json, status: 200
+    render json: topics.to_json(include: :posts), status: 200
   end
 
   def show
     topic = Topic.find(params[:id])
 
-    render json: topic.to_json, status: 200
+    render json: topic.to_json(include: :posts), status: 200
   end
 end

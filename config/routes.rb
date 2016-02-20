@@ -12,9 +12,4 @@ Rails.application.routes.draw do
     resources :posts, except: [:index]
 
   end
-
-  resources :advertisements
-
-  resources :questions
-
 end

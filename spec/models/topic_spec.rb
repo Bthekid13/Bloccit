@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Topic, type: :model do
   let(:topic) { Topic.create!(name: "Topic name", description: "Yes you did.") }
 
-  it { should have_many(:posts) }
+  it { is_expected.to have_many(:posts) }
 
   # #1
   describe "attributes" do

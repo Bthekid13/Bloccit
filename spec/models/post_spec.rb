@@ -2,8 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Post, type: :model do
 
-  let(:post) {Post.create!(title: "New post title", body: "New post body") }
+  let(:topic) { Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph) }
+   # #4
+  let(:post) { topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph) }
 
+  it { is_expected.to belong_to(:topic) }
   describe "attributes" do
     it "should respond to title" do
       expect(post).to respond_to(:title)
@@ -13,5 +16,5 @@ RSpec.describe Post, type: :model do
     end
   end
 
-  
+
 end

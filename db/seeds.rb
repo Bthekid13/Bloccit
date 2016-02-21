@@ -64,14 +64,6 @@ member = User.create!(
   password: 'helloworld'
 )
 
-#Create a moderator
-member = User.create!(
-  name: "Megyn Kelly",
-  email: "trump2016@gmail.com",
-  password: "yuuuge",
-  role: 'moderator'
-)
-
 
 
 puts "Seed finished"

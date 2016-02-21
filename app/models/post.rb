@@ -8,7 +8,6 @@ class Post < ActiveRecord::Base
   has_many :labelings, as: :labelable
   has_many :labels, through: :labelings
 
-  after_create :create_vote
   after_create :create_favorite
 
 
@@ -39,10 +38,6 @@ class Post < ActiveRecord::Base
   end
 
   private
-
-  def create_vote
-    user.votes.create(value: 1, post: self)
-  end
 
   def create_favorite
     Favorite.create(post: self, user: self.user)

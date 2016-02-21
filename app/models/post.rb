@@ -14,7 +14,7 @@ class Post < ActiveRecord::Base
 
   default_scope { order('rank DESC') }
 
-  scope :visible_to, -> (user){ user? all : joins(:topic).where('topics.public' => true) }
+  scope :visible_to, -> (user){ user ? all : joins(:topic).where('topics.public' => true) }
 
 
   validates :title, length: {minimum: 5}, presence: true
@@ -48,6 +48,5 @@ class Post < ActiveRecord::Base
 
   def create_favorite
     Favorite.create(post: self, user: self.user)
-    Mailman.new_post(self).deliver_now
   end
 end

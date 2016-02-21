@@ -1,4 +1,5 @@
 require 'rails_helper'
+include RandomData
 
 RSpec.describe User, type: :model do
   let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "password") }
@@ -6,6 +7,7 @@ RSpec.describe User, type: :model do
   it { is_expected.to have_many(:posts) }
   it { is_expected.to have_many(:comments)}
   it { is_expected.to have_many(:votes)}
+  it { is_expected.to have_many(:favorites) }
 
   # Shoulda tests for name
   it { is_expected.to validate_presence_of(:name) }
@@ -79,22 +81,23 @@ RSpec.describe User, type: :model do
       end
     end
   end
-end
 
-describe "invalid user" do
-  let(:user_with_invalid_name) { User.new(name: "", email: "user@bloccit.com") }
-  let(:user_with_invalid_email) { User.new(name: "Bloccit User", email: "") }
-  let(:user_with_invalid_email_format) { User.new(name: "Bloccit User", email: "invalid_format") }
 
-  it "should be an invalid user due to blank name" do
-    expect(user_with_invalid_name).to_not be_valid
-  end
+  describe "invalid user" do
+    let(:user_with_invalid_name) { User.new(name: "", email: "user@bloccit.com") }
+    let(:user_with_invalid_email) { User.new(name: "Bloccit User", email: "") }
+    let(:user_with_invalid_email_format) { User.new(name: "Bloccit User", email: "invalid_format") }
 
-  it "should be an invalid user due to blank email" do
-    expect(user_with_invalid_email).to_not be_valid
-  end
+    it "should be an invalid user due to blank name" do
+      expect(user_with_invalid_name).to_not be_valid
+    end
 
-  it "should be an invalid user due to incorrectly formatted email address" do
-    expect(user_with_invalid_email_format).to_not be_valid
+    it "should be an invalid user due to blank email" do
+      expect(user_with_invalid_email).to_not be_valid
+    end
+
+    it "should be an invalid user due to incorrectly formatted email address" do
+      expect(user_with_invalid_email_format).to_not be_valid
+    end
   end
 end

@@ -19,10 +19,4 @@ RSpec.describe LabelsController, type: :controller do
       expect(assigns(:label)).to eq(my_label)
     end
   end
-
-
-
-
-  end
-
 end

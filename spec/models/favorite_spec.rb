@@ -8,7 +8,7 @@ RSpec.describe Favorite, type: :model do
   describe "#favorite_for(post)" do
     before do
       topic = Topic.create!(name: "hello", description: "I don't like your tone.")
-      @post = Post.create!(name: "hello", body: "I still don'e like your tone.")
+      @post = Post.create!(title: "hello", body: "I still don'e like your tone.", topic: topic, user: user)
     end
 
     it "returns 'nil' if the user has not favorited the post" do

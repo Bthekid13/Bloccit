@@ -1,4 +1,6 @@
 require 'rails_helper'
+include RandomData
+include SessionsHelper
 
 RSpec.describe TopicsController, type: :controller do
   let(:my_topic) { Topic.create!(name:  RandomData.random_sentence, description:   RandomData.random_paragraph) }

@@ -11,14 +11,12 @@ RSpec.describe VotesController, type: :controller do
 
   # #17
   context "guest" do
-
     describe "POST up_vote" do
       it "redirects the user to the sign in view" do
         post :up_vote, post_id: user_post.id
         expect(response).to redirect_to(new_session_path)
       end
     end
-
     describe "POST down_vote" do
       it "redirects the user to the sign in view" do
         delete :down_vote, post_id: user_post.id
@@ -71,8 +69,6 @@ RSpec.describe VotesController, type: :controller do
         expect(response).to redirect_to(my_topic)
       end
     end
-
-
     describe "POST down_vote" do
       it "the users first vote increases number of post votes by one" do
         votes = user_post.votes.count
@@ -106,5 +102,4 @@ RSpec.describe VotesController, type: :controller do
       end
     end
   end
-
 end

@@ -1,4 +1,5 @@
 require 'rails_helper'
+include SessionsHelper
 include RandomData
 
 RSpec.describe TopicsController, type: :controller do

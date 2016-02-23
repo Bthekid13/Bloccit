@@ -57,7 +57,6 @@ class TopicsController < ApplicationController
        render :edit
      end
    end
->>>>>>> checkpoint-40
 
   def destroy
     @topic = Topic.find(params[:id])

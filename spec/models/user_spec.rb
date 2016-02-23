@@ -1,6 +1,27 @@
 require 'rails_helper'
 include RandomData
 
+include SessionsHelper
+
+RSpec.describe User, type: :model do
+  let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "password") }
+
+  it { is_expected.to have_many(:posts) }
+  it { is_expected.to have_many(:comments)}
+  it { is_expected.to have_many(:votes)}
+  it { is_expected.to have_many(:favorites) }
+
+  # Shoulda tests for name
+  it { is_expected.to validate_presence_of(:name) }
+  it { is_expected.to validate_length_of(:name).is_at_least(1) }
+
+  # Shoulda tests for email
+  it { is_expected.to validate_presence_of(:email) }
+  it { is_expected.to validate_uniqueness_of(:email) }
+  it { is_expected.to validate_length_of(:email).is_at_least(3) }
+  it { is_expected.to allow_value("user@bloccit.com").for(:email) }
+  it { should_not allow_value("userbloccit.com").for(:email) }
+>>>>>>> checkpoint-44
 
 RSpec.describe User, type: :model do
   let(:user) {build(:user)}
@@ -131,6 +152,39 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "invalid user" do
+    let(:user_with_invalid_name) { User.new(name: "", email: "user@bloccit.com") }
+    let(:user_with_invalid_email) { User.new(name: "Bloccit User", email: "") }
+    let(:user_with_invalid_email_format) { User.new(name: "Bloccit User", email: "invalid_format") }
 
+    it "should be an invalid user due to blank name" do
+      expect(user_with_invalid_name).to_not be_valid
+    end
 
+    it "should be an invalid user due to blank email" do
+      expect(user_with_invalid_email).to_not be_valid
+    end
+
+    it "should be an invalid user due to incorrectly formatted email address" do
+      expect(user_with_invalid_email_format).to_not be_valid
+    end
+  end
+  describe "#favorite_for(post)" do
+     before do
+       topic = Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph)
+       @post = topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)
+     end
+
+     it "returns `nil` if the user has not favorited the post" do
+ # #1
+       expect(user.favorite_for(@post)).to be_nil
+     end
+
+     it "returns the appropriate favorite if it exists" do
+ # #2
+       favorite = user.favorites.where(post: @post).create
+ # #3
+       expect(user.favorite_for(@post)).to eq(favorite)
+     end
+   end
 end

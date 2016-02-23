@@ -62,6 +62,7 @@ member = User.create!(
   password: 'helloworld'
 )
 
+<<<<<<< HEAD
 #Create a moderator
 member = User.create!(
   name: "Megyn Kelly",
@@ -76,6 +77,8 @@ admin = User.create!(
   password: "mustang",
   role: 'admin'
 )
+=======
+>>>>>>> checkpoint-40
 
 
 puts "Seed finished"

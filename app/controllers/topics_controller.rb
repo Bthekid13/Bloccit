@@ -42,6 +42,7 @@ class TopicsController < ApplicationController
     @topic.assign_attributes(topic_params)
 
     if @topic.save
+<<<<<<< HEAD
 
       @topic.labels = Label.update_labels(params[:topic][:labels])
       flash[:notice] = "Topic was updated."
@@ -51,6 +52,14 @@ class TopicsController < ApplicationController
       render :edit
     end
   end
+=======
+       redirect_to @topic
+     else
+       flash.now[:alert] = "Error saving topic. Please try again."
+       render :edit
+     end
+   end
+>>>>>>> checkpoint-40
 
   def destroy
     @topic = Topic.find(params[:id])

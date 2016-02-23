@@ -3,10 +3,15 @@ include RandomData
 include SessionsHelper
 
 RSpec.describe TopicsController, type: :controller do
+<<<<<<< HEAD
   let(:my_topic) { create(:topic) }
   let(:my_private_topic) { create(:topic, public: false) }
 
 
+=======
+  let (:my_topic) { Topic.create!(name:  RandomData.random_sentence, description:   RandomData.random_paragraph) }
+
+>>>>>>> checkpoint-40
   context "guest" do
     describe "GET index" do
       it "returns http success" do
@@ -14,6 +19,7 @@ RSpec.describe TopicsController, type: :controller do
         expect(response).to have_http_status(:success)
       end
 
+<<<<<<< HEAD
       it "does not include private topics in @topics" do
          get :index
          expect(assigns(:topics)).not_to include(my_private_topic)
@@ -52,15 +58,54 @@ RSpec.describe TopicsController, type: :controller do
     describe "POST create" do
       it "returns http redirect" do
         post :create, topic: {name: RandomData.random_sentence, description: RandomData.random_paragraph}
+=======
+      it "assigns Topic.all to topic" do
+        get :index
+        expect(assigns(:topics)).to eq([my_topic])
+      end
+    end
+
+    describe "GET show" do
+      it "returns http success" do
+        get :show, {id: my_topic.id}
+        expect(response).to have_http_status(:success)
+      end
+
+      it "renders the #show view" do
+        get :show, {id: my_topic.id}
+        expect(response).to render_template :show
+      end
+
+      it "assigns my_topic to @topic" do
+        get :show, {id: my_topic.id}
+        expect(assigns(:topic)).to eq(my_topic)
+      end
+    end
+
+     describe "GET new" do
+      it "returns http redirect" do
+        get :new
+>>>>>>> checkpoint-40
         expect(response).to redirect_to(new_session_path)
       end
     end
 
+<<<<<<< HEAD
+=======
+    describe "POST create" do
+      it "returns http redirect" do
+        post :create, topic: {name: RandomData.random_sentence, description: RandomData.random_paragraph}
+        expect(response).to redirect_to(new_session_path)
+      end
+    end
+
+>>>>>>> checkpoint-40
     describe "GET edit" do
       it "returns http redirect" do
         get :edit, {id: my_topic.id}
         expect(response).to redirect_to(new_session_path)
       end
+<<<<<<< HEAD
     end
 
     describe "PUT update" do
@@ -73,6 +118,20 @@ RSpec.describe TopicsController, type: :controller do
       end
     end
 
+=======
+    end
+
+    describe "PUT update" do
+      it "returns http redirect" do
+        new_name = RandomData.random_sentence
+        new_description = RandomData.random_paragraph
+
+        put :update, id: my_topic.id, topic: {name: new_name, description: new_description }
+        expect(response).to redirect_to(new_session_path)
+      end
+    end
+
+>>>>>>> checkpoint-40
     describe "DELETE destroy" do
       it "returns http redirect" do
         delete :destroy, {id: my_topic.id}
@@ -114,6 +173,13 @@ RSpec.describe TopicsController, type: :controller do
         get :show, {id: my_topic.id}
         expect(assigns(:topic)).to eq(my_topic)
       end
+<<<<<<< HEAD
+    end
+
+    describe "GET new" do
+      it "returns http redirect" do
+        get :new
+=======
     end
 
     describe "GET new" do
@@ -126,10 +192,21 @@ RSpec.describe TopicsController, type: :controller do
     describe "POST create" do
       it "returns http redirect" do
         post :create, topic: {name: RandomData.random_sentence, description: RandomData.random_paragraph}
+>>>>>>> checkpoint-40
         expect(response).to redirect_to(topics_path)
       end
     end
 
+<<<<<<< HEAD
+    describe "POST create" do
+      it "returns http redirect" do
+        post :create, topic: {name: RandomData.random_sentence, description: RandomData.random_paragraph}
+        expect(response).to redirect_to(topics_path)
+      end
+    end
+
+=======
+>>>>>>> checkpoint-40
     describe "DELETE destroy" do
       it "returns http redirect" do
         delete :destroy, {id: my_topic.id}
@@ -152,7 +229,11 @@ RSpec.describe TopicsController, type: :controller do
 
       it "assigns Topic.all to topic" do
         get :index
+<<<<<<< HEAD
         expect(assigns(:topics)).to eq([my_topic, my_private_topic])
+=======
+        expect(assigns(:topics)).to eq([my_topic])
+>>>>>>> checkpoint-40
       end
     end
 
@@ -161,12 +242,21 @@ RSpec.describe TopicsController, type: :controller do
         get :show, {id: my_topic.id}
         expect(response).to have_http_status(:success)
       end
+<<<<<<< HEAD
 
       it "renders the #show view" do
         get :show, {id: my_topic.id}
         expect(response).to render_template :show
       end
 
+=======
+
+      it "renders the #show view" do
+        get :show, {id: my_topic.id}
+        expect(response).to render_template :show
+      end
+
+>>>>>>> checkpoint-40
       it "assigns my_topic to @topic" do
         get :show, {id: my_topic.id}
         expect(assigns(:topic)).to eq(my_topic)
@@ -178,12 +268,21 @@ RSpec.describe TopicsController, type: :controller do
         get :new
         expect(response).to have_http_status(:success)
       end
+<<<<<<< HEAD
 
       it "renders the #new view" do
         get :new
         expect(response).to render_template :new
       end
 
+=======
+
+      it "renders the #new view" do
+        get :new
+        expect(response).to render_template :new
+      end
+
+>>>>>>> checkpoint-40
       it "initializes @topic" do
         get :new
         expect(assigns(:topic)).not_to be_nil
@@ -194,12 +293,21 @@ RSpec.describe TopicsController, type: :controller do
       it "increases the number of topics by 1" do
         expect{ post :create, topic: {name: RandomData.random_sentence, description: RandomData.random_paragraph} }.to change(Topic,:count).by(1)
       end
+<<<<<<< HEAD
 
       it "assigns Topic.last to @topic" do
         post :create, topic: {name: RandomData.random_sentence, description: RandomData.random_paragraph}
         expect(assigns(:topic)).to eq Topic.last
       end
 
+=======
+
+      it "assigns Topic.last to @topic" do
+        post :create, topic: {name: RandomData.random_sentence, description: RandomData.random_paragraph}
+        expect(assigns(:topic)).to eq Topic.last
+      end
+
+>>>>>>> checkpoint-40
       it "redirects to the new topic" do
         post :create, topic: {name: RandomData.random_sentence, description: RandomData.random_paragraph}
         expect(response).to redirect_to Topic.last

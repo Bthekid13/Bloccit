@@ -13,19 +13,24 @@ class User < ActiveRecord::Base
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates  :name, length: {minimum: 1, maximum: 100}, presence: true
+   before_save { self.email = email.downcase }
+   before_save { self.role ||= :member }
 
-  validates  :password, presence: true, length: {minimum: 6}, if: "password_digest.nil?"
-  validates  :password, length: {minimum: 6}, allow_blank: true
+   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-  validates  :email,
-              presence: true,
-              uniqueness: {case_sensitive: false },
-              length: {minimum: 3, maximum: 100},
-              format: {with: EMAIL_REGEX}
+   validates :name, length: { minimum: 1, maximum: 100 }, presence: true
 
-has_secure_password
+   validates :email,
+             presence: true,
+             uniqueness: { case_sensitive: false },
+             length: { minimum: 3, maximum: 100 },
+             format: { with: EMAIL_REGEX }
+   validates :password, presence: true, length: { minimum: 6 }, if: "password_digest.nil?"
+   validates :password, length: { minimum: 6 }, allow_blank: true
 
-enum role: [:member, :admin, :moderator]
+   has_secure_password
+
+   enum role: [:member, :admin]
 
 def favorite_for(post)
   favorites.where(post_id: post.id).first

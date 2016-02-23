@@ -5,7 +5,7 @@
 
 <% else %>
 
-  $('.flash').append("<div class='alert alert-danger'> <button type='button' class='close' data-dismis='alert'> &times; </button> <%= flash.now[:alert] %> </div> ");
+#  $('.flash').append("<div class='alert alert-danger'> <button type='button' class='close' data-dismis='alert'> &times; </button> <%= flash.now[:alert] %> </div> ");
   $('.new-comment').html("<%= escape_javascript(render partial: 'comments/form', locals: { post: @post, comment: @comment }) %>");
 
 <% end %>

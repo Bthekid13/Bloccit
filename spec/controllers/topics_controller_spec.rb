@@ -3,6 +3,7 @@ include RandomData
 include SessionsHelper
 
 RSpec.describe TopicsController, type: :controller do
+<<<<<<< HEAD
 
   let(:my_topic) { create(:topic) }
   let(:my_private_topic) { create(:topic, public: false) }
@@ -10,6 +11,10 @@ RSpec.describe TopicsController, type: :controller do
 
   let (:my_topic) { Topic.create!(name:  RandomData.random_sentence, description:   RandomData.random_paragraph) }
 
+=======
+  let (:my_topic) { Topic.create!(name:  RandomData.random_sentence, description:   RandomData.random_paragraph) }
+
+>>>>>>> checkpoint-41
   context "guest" do
     describe "GET index" do
       it "returns http success" do
@@ -17,6 +22,7 @@ RSpec.describe TopicsController, type: :controller do
         expect(response).to have_http_status(:success)
       end
 
+<<<<<<< HEAD
       it "does not include private topics in @topics" do
          get :index
          expect(assigns(:topics)).not_to include(my_private_topic)
@@ -80,6 +86,15 @@ RSpec.describe TopicsController, type: :controller do
     end
 
     describe "GET show" do
+=======
+      it "assigns Topic.all to topic" do
+        get :index
+        expect(assigns(:topics)).to eq([my_topic])
+      end
+    end
+
+    describe "GET show" do
+>>>>>>> checkpoint-41
       it "returns http success" do
         get :show, {id: my_topic.id}
         expect(response).to have_http_status(:success)
@@ -108,6 +123,7 @@ RSpec.describe TopicsController, type: :controller do
         post :create, topic: {name: RandomData.random_sentence, description: RandomData.random_paragraph}
         expect(response).to redirect_to(new_session_path)
       end
+<<<<<<< HEAD
     end
 
     describe "GET edit" do
@@ -136,6 +152,27 @@ describe "POST create" do
         expect(assigns(:topics)).to eq([my_topic])
       end
     end
+=======
+    end
+
+    describe "GET edit" do
+      it "returns http redirect" do
+        get :edit, {id: my_topic.id}
+        expect(response).to redirect_to(new_session_path)
+      end
+    end
+
+    describe "PUT update" do
+      it "returns http redirect" do
+        new_name = RandomData.random_sentence
+        new_description = RandomData.random_paragraph
+
+        put :update, id: my_topic.id, topic: {name: new_name, description: new_description }
+        expect(response).to redirect_to(new_session_path)
+      end
+    end
+
+>>>>>>> checkpoint-41
     describe "DELETE destroy" do
       it "returns http redirect" do
         delete :destroy, {id: my_topic.id}
@@ -148,6 +185,7 @@ describe "POST create" do
     before do
       user = User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "helloworld", role: :member)
       create_session(user)
+<<<<<<< HEAD
     end
 
     describe "GET index" do
@@ -236,18 +274,72 @@ describe "POST create" do
       it "returns http redirect" do
         delete :destroy, {id: my_topic.id}
         expect(response).to redirect_to(new_session_path)
+=======
+    end
+
+    describe "GET index" do
+      it "returns http success" do
+        get :index
+        expect(response).to have_http_status(:success)
+      end
+
+      it "assigns Topic.all to topic" do
+        get :index
+        expect(assigns(:topics)).to eq([my_topic])
+      end
+    end
+
+    describe "GET show" do
+      it "returns http success" do
+        get :show, {id: my_topic.id}
+        expect(response).to have_http_status(:success)
+      end
+
+      it "renders the #show view" do
+        get :show, {id: my_topic.id}
+        expect(response).to render_template :show
+      end
+
+      it "assigns my_topic to @topic" do
+        get :show, {id: my_topic.id}
+        expect(assigns(:topic)).to eq(my_topic)
+      end
+    end
+
+    describe "GET new" do
+      it "returns http redirect" do
+        get :new
+        expect(response).to redirect_to(topics_path)
+      end
+    end
+
+    describe "POST create" do
+      it "returns http redirect" do
+        post :create, topic: {name: RandomData.random_sentence, description: RandomData.random_paragraph}
+        expect(response).to redirect_to(topics_path)
+      end
+    end
+
+    describe "DELETE destroy" do
+      it "returns http redirect" do
+        delete :destroy, {id: my_topic.id}
+>>>>>>> checkpoint-41
         expect(response).to redirect_to(topics_path)
       end
     end
   end
 
+<<<<<<< HEAD
   context "member user" do
     before do
       user = User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "helloworld", role: :member)
+=======
+>>>>>>> checkpoint-41
   context "admin user" do
     before do
       user = User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "helloworld", role: :admin)
       create_session(user)
+<<<<<<< HEAD
     end
 
     describe "GET index" do
@@ -486,6 +578,71 @@ describe "POST create" do
         expect(response).to redirect_to Topic.last
       end
     end
+=======
+    end
+
+    describe "GET index" do
+      it "returns http success" do
+        get :index
+        expect(response).to have_http_status(:success)
+      end
+
+      it "assigns Topic.all to topic" do
+        get :index
+        expect(assigns(:topics)).to eq([my_topic])
+      end
+    end
+
+    describe "GET show" do
+      it "returns http success" do
+        get :show, {id: my_topic.id}
+        expect(response).to have_http_status(:success)
+      end
+
+      it "renders the #show view" do
+        get :show, {id: my_topic.id}
+        expect(response).to render_template :show
+      end
+
+      it "assigns my_topic to @topic" do
+        get :show, {id: my_topic.id}
+        expect(assigns(:topic)).to eq(my_topic)
+      end
+    end
+
+    describe "GET new" do
+      it "returns http success" do
+        get :new
+        expect(response).to have_http_status(:success)
+      end
+
+      it "renders the #new view" do
+        get :new
+        expect(response).to render_template :new
+      end
+
+      it "initializes @topic" do
+        get :new
+        expect(assigns(:topic)).not_to be_nil
+      end
+    end
+
+    describe "POST create" do
+      it "increases the number of topics by 1" do
+        expect{ post :create, topic: {name: RandomData.random_sentence, description: RandomData.random_paragraph} }.to change(Topic,:count).by(1)
+      end
+
+      it "assigns Topic.last to @topic" do
+        post :create, topic: {name: RandomData.random_sentence, description: RandomData.random_paragraph}
+        expect(assigns(:topic)).to eq Topic.last
+      end
+
+      it "redirects to the new topic" do
+        post :create, topic: {name: RandomData.random_sentence, description: RandomData.random_paragraph}
+        expect(response).to redirect_to Topic.last
+      end
+    end
+>>>>>>> checkpoint-41
 
     describe "GET edit" do
       it "returns http success" do
@@ -506,6 +663,7 @@ describe "POST create" do
         expect(topic_instance.name).to eq my_topic.name
         expect(topic_instance.description).to eq my_topic.description
       end
+<<<<<<< HEAD
     end
 
   context "admin user" do
@@ -659,6 +817,10 @@ describe "POST create" do
       end
     end
 
+=======
+    end
+
+>>>>>>> checkpoint-41
     describe "PUT update" do
       it "updates topic with expected attributes" do
         new_name = RandomData.random_sentence

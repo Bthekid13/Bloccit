@@ -115,7 +115,7 @@ end
     end
   end
 
-  describe ".avitar_url" do
+  describe ".avatar_url" do
     let(:known_user) {build(:user, email: "blochead@gmail.com")}
     it "returns the proper Gravatar url for a known email entity" do
       expected_gravatar = "http://gravatar.com/avatar/bb6d1172212c180cfbdb7039129d7b03.png?s=48"

@@ -1,10 +1,11 @@
 class User < ActiveRecord::Base
   has_many :posts
 
-   before_save { self.email = email.downcase }
+   before_save { self.email &&= email.downcase }
    before_save { self.role ||= :member }
 
    EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+   enum role: [:member, :admin]
 
    validates :name, length: { minimum: 1, maximum: 100 }, presence: true
 
@@ -16,9 +17,11 @@ class User < ActiveRecord::Base
    validates :password, presence: true, length: { minimum: 6 }, if: "password_digest.nil?"
    validates :password, length: { minimum: 6 }, allow_blank: true
 
+   validates :role, inclusion: { in: roles.keys ,
+       message: "%{value} is not a valid role" }
+
    has_secure_password
 
-   enum role: [:member, :admin]
 
 private
   def format_name

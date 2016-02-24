@@ -51,12 +51,6 @@ class TopicsController < ApplicationController
       render :edit
     end
   end
-       redirect_to @topic
-     else
-       flash.now[:alert] = "Error saving topic. Please try again."
-       render :edit
-     end
-   end
 
   def destroy
     @topic = Topic.find(params[:id])

@@ -35,13 +35,12 @@ class TopicsController < ApplicationController
     @topic.assign_attributes(topic_params)
 
     if @topic.save
-      flash[:notice] = "Topic was updated."
-      redirect_to @topic
-    else
-      flash.now[:alert] = "Error saving topic. Please try again."
-      render :edit
-    end
-  end
+       redirect_to @topic
+     else
+       flash.now[:alert] = "Error saving topic. Please try again."
+       render :edit
+     end
+   end
 
   def destroy
     @topic = Topic.find(params[:id])
@@ -59,6 +58,13 @@ class TopicsController < ApplicationController
 
   def topic_params
     params.require(:topic).permit(:name, :description, :public)
+  end
+
+  def authorize_moderator
+    unless current_user.moderator? || current_user.admin?
+      flash[:notice] = "You must be either an admin or a moderator to do that."
+      redirect_to topics_path
+    end
   end
 
   def authorize_user

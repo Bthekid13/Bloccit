@@ -58,9 +58,7 @@ topics = Topic.all
 
 # Create Posts
 50.times do
-# #1
   Post.create!(
-# #2
     user:   users.sample,
     topic:  topics.sample,
     title:  RandomData.random_sentence,
@@ -71,17 +69,13 @@ posts = Post.all
 
 
 # Create Comments
-# #3
 100.times do
   Comment.create!(
-# #4
     user: users.sample, 
     post: posts.sample,
     body: RandomData.random_paragraph
   )
 end
-
-
 
 
 

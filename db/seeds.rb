@@ -22,15 +22,23 @@ admin = User.create!(
 
 #Create an Admin
 admin = User.create!(
-  name: "Admin User",
+  name: "Admin Example",
   email: "admin@example.com",
   password: "helloworld",
   role: 'admin'
 )
 
+#Create a Moderator
+mod = User.create!(
+  name: "Moderator Example",
+  email: "moderator@example.com",
+  password: "helloworld",
+  role: 'moderator'
+)
+
 # Create a member
 member = User.create!(
-  name:     'Member User',
+  name:     'Member Example',
   email:    'member@example.com',
   password: 'helloworld'
 )

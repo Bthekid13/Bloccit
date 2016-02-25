@@ -1,7 +1,9 @@
 <h1> Topics </h1>
 
 <div class="row">
-  <%= render "topic" %>
+  <div class="col-md-8">
+  <%= render @topics %>
+  </div>
   <% if user_is_authorized_for_topics? %>
   <div class="col-md-4">
     <%= link_to "New Topic", new_topic_path, class: 'btn btn-success' %>

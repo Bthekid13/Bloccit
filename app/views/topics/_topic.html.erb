@@ -1,14 +1,12 @@
-<div class="col-md-8">
-  <% @topics.each do |topic| %>
-  <div class="media">
-    <div class="media-body">
-      <h4 class="media-heading">
-        <%= link_to topic.name, topic %>
-      </h4>
-      <small>
-        <%= topic.description %>
-      </small>
-    </div>
+<div class="media">
+  <div class="media-body">
+    <h4 class="media-heading">
+      <%= link_to topic.name, topic %>
+    </h4>
+    <small>
+      <%= topic.description %>
+    </small>
   </div>
-  <% end %>
 </div>
+
+

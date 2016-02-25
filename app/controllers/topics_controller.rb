@@ -2,7 +2,7 @@ class TopicsController < ApplicationController
 
   before_action :require_sign_in, except: [:index, :show]
   before_action :authorize_user, except: [:index, :show, :edit, :update]
-  # before_action :authorize_moderator, except: [:index, :show, :new, :create]
+  before_action :authorize_moderator, except: [:index, :show, :new, :create]
 
   def index
     @topics = Topic.all
@@ -36,13 +36,12 @@ class TopicsController < ApplicationController
     @topic.assign_attributes(topic_params)
 
     if @topic.save
-      flash[:notice] = "Topic was updated."
-      redirect_to @topic
-    else
-      flash.now[:alert] = "Error saving topic. Please try again."
-      render :edit
-    end
-  end
+       redirect_to @topic
+     else
+       flash.now[:alert] = "Error saving topic. Please try again."
+       render :edit
+     end
+   end
 
   def destroy
     @topic = Topic.find(params[:id])
@@ -59,7 +58,7 @@ class TopicsController < ApplicationController
   private
 
   def topic_params
-    params.require(:topic).permit(:title, :description, :public)
+    params.require(:topic).permit(:name, :description, :public)
   end
 
   # def authorize_moderator

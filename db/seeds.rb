@@ -11,6 +11,37 @@ include RandomData
   )
 
 end
+
+#Create Personal User
+admin = User.create!(
+  name: "Wil Burke",
+  email: "billyburke13@gmail.com",
+  password: "mustang",
+  role: 'admin'
+)
+
+#Create an Admin
+admin = User.create!(
+  name: "Admin Example",
+  email: "admin@example.com",
+  password: "helloworld",
+  role: 'admin'
+)
+
+#Create a Moderator
+mod = User.create!(
+  name: "Moderator Example",
+  email: "moderator@example.com",
+  password: "helloworld",
+  role: 'moderator'
+)
+
+# Create a member
+member = User.create!(
+  name:     'Member Example',
+  email:    'member@example.com',
+  password: 'helloworld'
+)
 users = User.all
 
 # Creates Topics
@@ -27,9 +58,7 @@ topics = Topic.all
 
 # Create Posts
 50.times do
-# #1
   Post.create!(
-# #2
     user:   users.sample,
     topic:  topics.sample,
     title:  RandomData.random_sentence,
@@ -40,38 +69,13 @@ posts = Post.all
 
 
 # Create Comments
-# #3
 100.times do
   Comment.create!(
-# #4
     user: users.sample, 
     post: posts.sample,
     body: RandomData.random_paragraph
   )
 end
-
-#Create an Admin
-admin = User.create!(
-  name: "Wil Burke",
-  email: "billyburke13@gmail.com",
-  password: "mustang",
-  role: 'admin'
-)
-
-# Create a member
-member = User.create!(
-  name:     'Member User',
-  email:    'member@example.com',
-  password: 'helloworld'
-)
-
-#Create a moderator
-member = User.create!(
-  name: "Megyn Kelly",
-  email: "trump2016@gmail.com",
-  password: "yuuuge",
-  role: 'moderator'
-)
 
 
 

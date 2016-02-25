@@ -1,4 +1,6 @@
 require 'rails_helper'
+include RandomData
+
 
 RSpec.describe Post, type: :model do
 

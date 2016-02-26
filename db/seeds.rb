@@ -44,13 +44,23 @@ member = User.create!(
 )
 users = User.all
 
+# Create Labels
+%w(Sam Frodo Boromir Sauron Galandriel Bilbo Saruman Gollum Gandalf Aragorn Gimli).each do |label|
+  Label.create!(name: label)
+end
+labels = Label.all
+
 # Creates Topics
 
 15.times do
-  Topic.create!(
+  t = Topic.create!(
   name: RandomData.random_sentence,
   description: RandomData.random_paragraph
   )
+  if 0.5 > rand()
+    t.labels = rand(1..5).times.collect { labels.sample }.uniq
+    t.save!
+  end 
 end
 topics = Topic.all
 
@@ -58,12 +68,16 @@ topics = Topic.all
 
 # Create Posts
 50.times do
-  Post.create!(
+  p = Post.create!(
     user:   users.sample,
     topic:  topics.sample,
     title:  RandomData.random_sentence,
     body:   RandomData.random_paragraph
   )
+  if 0.5 > rand()
+    p.labels = rand(1..5).times.collect { labels.sample }.uniq
+    p.save!
+  end 
 end
 posts = Post.all
 
@@ -84,3 +98,4 @@ puts "#{User.count} users were created"
 puts "#{Topic.count} topics were created"
 puts "#{Post.count} posts were created"
 puts "#{Comment.count} comments were created"
+puts "#{Label.count} labels were created"

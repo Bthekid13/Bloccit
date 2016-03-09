@@ -10,10 +10,15 @@ RSpec.describe Post, type: :model do
   let(:post) { topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph) }
   let(:post) { topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user) }
 
+  it { is_expected.to have_many(:labelings) }
+  it { is_expected.to have_many(:labels).through(:labelings) }
+
   it { is_expected.to have_many(:comments) }
   it { is_expected.to belong_to(:topic) }
   it { is_expected.to belong_to(:user) }
   it { is_expected.to have_many(:votes)}
+  it { is_expected.to have_many(:favorites) }
+
 
   it { is_expected.to validate_presence_of(:title) }
   it { is_expected.to validate_presence_of(:body) }
@@ -58,6 +63,7 @@ RSpec.describe Post, type: :model do
         expect(post.points).to eq(@up_votes - @down_votes)
       end
     end
+    
     describe "#update_rank" do
       it "calculates the correct rank" do
         post.update_rank
@@ -77,21 +83,4 @@ RSpec.describe Post, type: :model do
       end
     end
   end
-  describe "#create_vote" do
-    it "sets the post up_vote to 1" do
-      expect(post.up_votes).to eq(1)
-    end
-
-    it "calls create vote when a post is created" do
-      post = topic.posts.new(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)
-      expect(post).to receive(:create_vote)
-      post.save
-    end
-
-    it "asscociates the vote with the owner of the post" do
-      expect(post.user.first.user).to eq(post.user)
-    end
-
-  end
-
 end

@@ -94,7 +94,7 @@ posts = Post.all
 100.times do
   Comment.create!(
     user: users.sample, 
-    post: posts.sample,
+    commentable: posts.sample,
     body: RandomData.random_paragraph
   )
 end
@@ -102,7 +102,7 @@ end
 50.times do
   Comment.create!(
     user: users.sample, 
-    topic: topics.sample,
+    commentable: topics.sample,
     body: RandomData.random_paragraph
   )
 end

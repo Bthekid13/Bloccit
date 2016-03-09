@@ -1,6 +1,7 @@
 class Post < ActiveRecord::Base
   belongs_to :topic
   belongs_to :user
+
   has_many :votes, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
@@ -16,6 +17,11 @@ class Post < ActiveRecord::Base
   validates :body, length: {minimum: 10}, presence: true
   validates :topic, presence: true
   validates :user, presence: true
+
+  after_create  do 
+    create_vote
+    create_favorite
+  end
 
   def up_votes
     votes.where(value: 1).count
@@ -39,6 +45,10 @@ class Post < ActiveRecord::Base
 
   def create_vote
     Vote.create!(value: 1, post: self, user: self.user)
+  end
+
+  def create_favorite
+    Favorite.create!(post: self, user: self.user)
   end
 
 end

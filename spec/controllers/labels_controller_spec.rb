@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+
 RSpec.describe LabelsController, type: :controller do
   let(:my_label) { Label.create!(name: "L1") }
 
@@ -19,10 +20,4 @@ RSpec.describe LabelsController, type: :controller do
       expect(assigns(:label)).to eq(my_label)
     end
   end
-
-
-
-
-  end
-
 end

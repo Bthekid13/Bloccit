@@ -11,10 +11,13 @@ end
 
 # #2
 group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'sqlite3'
 end
 
 group :development, :test do
+  gem 'pry-rails'
   gem 'rspec-rails', '~> 3.0'
   gem 'shoulda'
 end

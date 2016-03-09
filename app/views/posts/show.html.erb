@@ -1,19 +1,21 @@
-<div>
-  <%= render partial: 'votes/voter', locals: {post: @post} %>
-  <h1>
-    <%= @post.title %> <br>
-    <small>
-      submitted <%= time_ago_in_words(@post.created_at) %> ago by <% @post.user.name %>
-    </small>
-  </h1>
-</div>
 <div class="row">
   <div class="col-md-8">
-    <%= render partial: "labels/list", locals: { labels: @post.labels } %>
-    <br />
+    <div class="media">
+      <div class="media-left">
+        <%= render partial: 'votes/voter', locals: {post: @post} %>
+      </div>
+      <div class="media-body">
+        <h1>
+          <%= @post.title %> <br>
+          <small>
+            submitted <%= time_ago_in_words(@post.created_at) %> ago by <% @post.user.name %>
+          </small>
+          <%= render partial: "labels/list", locals: { labels: @post.labels } %>
+        </h1>
+      </div>
+    </div>
   </div>
 </div>
-<br />
 <div class="row">
   <div class="col-md-8">
     <p><%= @post.body %></p>
@@ -27,9 +29,13 @@
   </div>
   <div class="col-md-4">
 
-    <% if user_is_authorized_for_posts?(@post) %>
-    <%= link_to "Edit", edit_topic_post_path(@post.topic, @post), class: 'btn btn-success' %>
-    <%= link_to "Delete Post", [@post.topic, @post], method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to delete this post?'} %>
+    <% if user_can_edit_posts?(@post) %>
+      <%= link_to "Edit", edit_topic_post_path(@post.topic, @post), class: 'btn btn-success' %>
+    <% end %>
+
+    <% if user_can_destroy?(@post) %>
+      <%= link_to "Delete Post", [@post.topic, @post], method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to delete this post?'} %>
+
     <% end %>
     <div class="col-md-4">
       <h3>

@@ -1,13 +1,20 @@
-<div>
-  <%= render partial: 'votes/voter', locals: {post: @post} %>
-  <h1>
-    <%= render partial: "labels/list", locals: { labels: @post.labels } %>
-    <br />
-    <%= @post.title %> <br>
-    <small>
-      submitted <%= time_ago_in_words(@post.created_at) %> ago by <% @post.user.name %>
-    </small>
-  </h1>
+<div class="row">
+  <div class="col-md-8">
+    <div class="media">
+      <div class="media-left">
+        <%= render partial: 'votes/voter', locals: {post: @post} %>
+      </div>
+      <div class="media-body">
+        <h1>
+          <%= @post.title %> <br>
+          <small>
+            submitted <%= time_ago_in_words(@post.created_at) %> ago by <% @post.user.name %>
+          </small>
+          <%= render partial: "labels/list", locals: { labels: @post.labels } %>
+        </h1>
+      </div>
+    </div>
+  </div>
 </div>
 <div class="row">
   <div class="col-md-8">

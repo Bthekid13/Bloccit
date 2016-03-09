@@ -37,7 +37,8 @@ class Post < ActiveRecord::Base
 
   private
 
-  # def create_favorite
-  #   Favorite.create(post: self, user: self.user)
-  # end
+  def create_vote
+    Vote.create!(value: 1, post: self, user: self.user)
+  end
+
 end

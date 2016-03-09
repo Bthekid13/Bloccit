@@ -13,35 +13,43 @@ include RandomData
 end
 
 #Create Personal User
-admin = User.create!(
-  name: "Wil Burke",
-  email: "billyburke13@gmail.com",
-  password: "mustang",
-  role: 'admin'
-)
+unless User.find_by(email: "billyburke13@gmail.com")
+  admin = User.create!(
+    name: "Wil Burke",
+    email: "billyburke13@gmail.com",
+    password: "mustang",
+    role: 'admin'
+  )
+end
 
 #Create an Admin
-admin = User.create!(
-  name: "Admin Example",
-  email: "admin@example.com",
-  password: "helloworld",
-  role: 'admin'
-)
+unless User.find_by(email: "admin@example.com")
+  admin = User.create!(
+    name: "Admin Example",
+    email: "admin@example.com",
+    password: "helloworld",
+    role: 'admin'
+  )
+end
 
 #Create a Moderator
-mod = User.create!(
-  name: "Moderator Example",
-  email: "moderator@example.com",
-  password: "helloworld",
-  role: 'moderator'
-)
+unless User.find_by(email: "moderator@example.com")
+  mod = User.create!(
+    name: "Moderator Example",
+    email: "moderator@example.com",
+    password: "helloworld",
+    role: 'moderator'
+  )
+end
 
 # Create a member
-member = User.create!(
-  name:     'Member Example',
-  email:    'member@example.com',
-  password: 'helloworld'
-)
+unless User.find_by(email: "member@example.com")
+  member = User.create!(
+    name:     'Member Example',
+    email:    'member@example.com',
+    password: 'helloworld'
+  )
+end
 users = User.all
 
 # Create Labels

@@ -1,15 +1,13 @@
 class Post < ActiveRecord::Base
   belongs_to :topic
   belongs_to :user
+
   has_many :votes, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
   has_many :labelings, as: :labelable
   has_many :labels, through: :labelings
-
-  after_create :create_vote
-  after_create :create_favorite
 
 
   default_scope { order('rank DESC') }
@@ -19,6 +17,11 @@ class Post < ActiveRecord::Base
   validates :body, length: {minimum: 10}, presence: true
   validates :topic, presence: true
   validates :user, presence: true
+
+  after_create  do 
+    create_vote
+    create_favorite
+  end
 
   def up_votes
     votes.where(value: 1).count
@@ -41,10 +44,11 @@ class Post < ActiveRecord::Base
   private
 
   def create_vote
-    user.votes.create(value: 1, post: self)
+    Vote.create!(value: 1, post: self, user: self.user)
   end
 
   def create_favorite
-    Favorite.create(post: self, user: self.user)
-    Mailman.new_post(self).deliver_now
+    Favorite.create!(post: self, user: self.user)
   end
+
+end

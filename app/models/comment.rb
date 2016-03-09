@@ -5,5 +5,6 @@ class Comment < ActiveRecord::Base
 
   validates :body, length: { minimum: 5 }, presence: true
   validates :user, presence: true
+## Comment Model
 
 end

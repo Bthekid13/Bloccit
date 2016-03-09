@@ -49,15 +49,16 @@ unless User.find_by email: 'member@example.com'
     email:    'member@example.com',
     password: 'helloworld'
   )
-  users = User.all
 end
+users = User.all
+puts "#{User.count} users have been persisted."
 
 # Create Labels
 %w(Sam Frodo Boromir Sauron Galandriel Bilbo Saruman Gollum Gandalf Aragorn Gimli).each do |label|
   Label.create!(name: label)
 end
 labels = Label.all
-
+puts "#{Label.count} labels have been persisted."
 # Creates Topics
 
 15.times do
@@ -71,7 +72,7 @@ labels = Label.all
   end 
 end
 topics = Topic.all
-
+puts "#{Topic.count} topics have been persisted."
 
 
 # Create Posts
@@ -83,13 +84,15 @@ topics = Topic.all
     body:   RandomData.random_paragraph,
     created_at: rand(10.minutes .. 1.year).ago
   )
-  rand(1..10).times {p.votes.create!(value: [-1, 1, 1, 1].sample, user: users.sample)}
+  rand(1..20).times {p.votes.create!(value: [-1, 1, 1, 1].sample, user: users.sample)}
   if 0.5 > rand()
     p.labels = rand(1..5).times.collect { labels.sample }.uniq
     p.save!
   end 
 end
 posts = Post.all
+puts "#{Post.count} posts have been persisted."
+puts "#{Vote.count} votes have been cast."
 
 
 # Create Comments
@@ -100,14 +103,13 @@ posts = Post.all
     body: RandomData.random_paragraph
   )
 end
+puts "#{Comment.count} comments were created"
 
 
 
 
 puts "Seed finished"
-puts "#{User.count} users were created"
-puts "#{Topic.count} topics were created"
-puts "#{Post.count} posts were created"
-puts "#{Comment.count} comments were created"
-puts "#{Vote.count} votes were cast"
-puts "#{Label.count} labels were created"
+
+
+
+

@@ -6,10 +6,15 @@ RSpec.describe Post, type: :model do
   let(:user) { create(:user) }
   let(:post) { create(:post) }
 
+  it { is_expected.to have_many(:labelings) }
+  it { is_expected.to have_many(:labels).through(:labelings) }
+
   it { is_expected.to have_many(:comments) }
   it { is_expected.to belong_to(:topic) }
   it { is_expected.to belong_to(:user) }
   it { is_expected.to have_many(:votes)}
+  it { is_expected.to have_many(:favorites) }
+
 
   it { is_expected.to validate_presence_of(:title) }
   it { is_expected.to validate_presence_of(:body) }
@@ -54,6 +59,7 @@ RSpec.describe Post, type: :model do
         expect(post.points).to eq(@up_votes - @down_votes)
       end
     end
+    
     describe "#update_rank" do
       it "calculates the correct rank" do
         post.update_rank

@@ -1,4 +1,6 @@
 require 'rails_helper'
+include RandomData
+
 
 RSpec.describe Label, type: :model do
    let(:topic) { create(:topic) }
@@ -6,7 +8,6 @@ RSpec.describe Label, type: :model do
    let(:post) { create(:post) }
    let(:label) { Label.create!(name: 'Label') }
    let(:label2) { Label.create!(name: 'Label2w') }
-
 
 
   it { is_expected.to have_many :labelings }

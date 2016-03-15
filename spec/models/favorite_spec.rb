@@ -11,4 +11,5 @@ RSpec.describe Favorite, type: :model do
       topic = Topic.create!(name: "hello", description: "I don't like your tone.")
       @post = Post.create!(title: "hello", body: "I still don'e like your tone.", topic: topic, user: user)
     end
+  end
 end

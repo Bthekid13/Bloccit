@@ -1,4 +1,5 @@
 require 'rails_helper'
+include RandomData
 
 RSpec.describe Favorite, type: :model do
    let(:topic) { build(:topic) }
@@ -10,15 +11,4 @@ RSpec.describe Favorite, type: :model do
       topic = Topic.create!(name: "hello", description: "I don't like your tone.")
       @post = Post.create!(title: "hello", body: "I still don'e like your tone.", topic: topic, user: user)
     end
-
-    it "returns 'nil' if the user has not favorited the post" do
-      expect(user.favorite_for(@post)).to be_nil
-    end
-
-    it "returns the appropiate favorite if it exists" do
-      favorite = user.favorites.where(post: @post).create
-
-      expect(user.favorite_for(@post)).to eq(favorite)
-    end
-  end
 end

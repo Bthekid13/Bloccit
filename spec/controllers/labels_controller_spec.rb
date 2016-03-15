@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+
 RSpec.describe LabelsController, type: :controller do
   let(:my_label) { Label.create!(name: "L1") }
 

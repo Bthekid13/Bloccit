@@ -1,6 +1,6 @@
 require 'rails_helper'
- include SessionsHelper
- include RandomData
+include RandomData
+include SessionsHelper
 
  RSpec.describe FavoritesController, type: :controller do
    let(:my_topic) { create(:topic) }

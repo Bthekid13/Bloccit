@@ -3,9 +3,10 @@ include RandomData
 include SessionsHelper
 
 RSpec.describe PostsController, type: :controller do
-  let(:my_user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "helloworld") }
-  let(:my_topic) { Topic.create!(name:  RandomData.random_sentence, description: RandomData.random_paragraph) }
-  let(:my_post) { my_topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: my_user) }
+  let(:my_topic) { create(:topic) }
+  let(:my_user) { create(:user) }
+  let(:other_user) { create(:user) }
+  let(:my_post) { create(:post, topic: my_topic, user: my_user) }
 
   context "guest user" do
     # #6
@@ -187,7 +188,7 @@ RSpec.describe PostsController, type: :controller do
         count = Post.where({id: my_post.id}).size
         expect(count).to eq 0
       end
-      
+
       it "redirects to topic show" do
         # #32
         delete :destroy, topic_id: my_topic.id, id: my_post.id

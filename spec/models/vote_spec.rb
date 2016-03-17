@@ -1,10 +1,11 @@
 require 'rails_helper'
+include RandomData
 
 RSpec.describe Vote, type: :model do
 
-  let(:topic) { Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph) }
-  let(:user)  { User.create!(name: "Joe Smith", email: "joe@bloccit.com", password: "password") }
-  let(:post)  { Post.create!(title: RandomData.random_sentence, body: RandomData.random_paragrap, user: user) }
+  let(:topic) { create(:topic) }
+  let(:user) { create(:user) }
+  let(:post) { create(:post) } 
   let(:vote)  { Vote.create!(value: 1, post: post, user: user) }
 
   it { is_expected.to belong_to(:post) }
@@ -16,8 +17,9 @@ RSpec.describe Vote, type: :model do
   describe "update_post callback" do
     it "triggers update_post on save" do
       expect(vote).to receive(:update_post).at_least(:once)
+      vote.save
     end
-  end
+
     it "update_post should call update rank on post" do
       expect(post).to receive(:update_rank).at_least(:once)
       vote.save

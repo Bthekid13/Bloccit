@@ -9,3 +9,4 @@ FactoryGirl.define do
     rank 0.0
   end
 end
+

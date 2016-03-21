@@ -4,8 +4,6 @@ class User < ActiveRecord::Base
   has_many :votes, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
-  before_create :generate_auth_token
-
 
   before_save {self.email = email.downcase}
   before_save {self.role ||= :member}

@@ -7,7 +7,7 @@ RSpec.describe VotesController, type: :controller do
   let(:other_user) { User.create!(name: RandomData.random_name, email: RandomData.random_email, password: "helloworld", role: :member) }
   let(:my_topic) { Topic.create!(name:  RandomData.random_sentence, description: RandomData.random_paragraph) }
   let(:user_post) { my_topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: other_user) }
-  let(:my_vote) { Vote.create!(value: 1) }
+  let(:my_vote) {create(:vote)} 
 
   # #17
   context "guest" do

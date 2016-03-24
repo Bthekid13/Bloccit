@@ -2,9 +2,9 @@ require 'rails_helper'
 include RandomData
 
 RSpec.describe Post, type: :model do
-  let(:topic) { build(:topic) }
-  let(:user) { build(:user) }
-  let(:post) { build(:post) }
+  let(:topic) { create(:topic) }
+  let(:user) { create(:user) }
+  let(:post) { create(:post) }
 
   it { is_expected.to have_many(:labelings) }
   it { is_expected.to have_many(:labels).through(:labelings) }
@@ -79,21 +79,4 @@ RSpec.describe Post, type: :model do
       end
     end
   end
-  describe "#create_vote" do
-    it "sets the post up_vote to 1" do
-      expect(post.up_votes).to eq(1)
-    end
-
-    it "calls create vote when a post is created" do
-      post = topic.posts.new(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)
-      expect(post).to receive(:create_vote)
-      post.save
-    end
-
-    it "asscociates the vote with the owner of the post" do
-      expect(post.user.first.user).to eq(post.user)
-    end
-
-  end
-
 end

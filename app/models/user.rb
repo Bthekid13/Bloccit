@@ -23,7 +23,6 @@ class User < ActiveRecord::Base
             format: { with: EMAIL_REGEX }
   validates :password, presence: true, length: { minimum: 6 }, if: "password_digest.nil?"
   validates :password, length: { minimum: 6 }, allow_blank: true
->>>>>>> xm_49_assignment_api2
 
   validates :role, inclusion: { in: roles.keys ,
             message: "%{value} is not a valid role" }

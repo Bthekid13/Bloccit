@@ -70,7 +70,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       end
 
       it "returns my_user serialized" do
-        expect(response.body).to eq([my_user].to_json)
+        expect(response.body).to eq(my_user.to_json)
       end
     end
   end

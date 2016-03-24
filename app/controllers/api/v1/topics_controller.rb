@@ -5,11 +5,7 @@ class Api::V1::TopicsController < Api::V1::BaseController
   def index
     topics = Topic.all
 
-<<<<<<< HEAD
-    render json: topics.to_json, status: 200
-=======
     render json: topics.to_json(include: :posts), status: 200
->>>>>>> xm_48_checkpoint_api
   end
 
   def show

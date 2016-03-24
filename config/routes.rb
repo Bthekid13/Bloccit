@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :topics, except: [:new, :edit] do
         resources :posts,  except:  [:new, :edit]
       end
+      resources :comments, only: [:index, :show]
     end
   end
 

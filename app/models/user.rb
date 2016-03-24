@@ -10,7 +10,6 @@ class User < ActiveRecord::Base
   before_save { self.role ||= :member }
 
 
-
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   enum role: [:member, :moderator, :admin]
 

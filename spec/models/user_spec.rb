@@ -4,7 +4,7 @@ include SessionsHelper
 
 
 RSpec.describe User, type: :model do
-  let(:user) {build(:user)}
+  let(:user) { create(:user) }
 
   it { is_expected.to have_many(:posts) }
   it { is_expected.to have_many(:comments)}
@@ -143,3 +143,5 @@ RSpec.describe User, type: :model do
      end
    end
 end
+
+

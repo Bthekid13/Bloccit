@@ -9,12 +9,11 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     @new_comment = Comment.new
 
-
     if @comment.save
       flash[:notice] = "Comment saved successfully"
     else
       flash[:alert] = "Comment failed to save"
-  end
+    end
 
   respond_to do |format|
     format.html

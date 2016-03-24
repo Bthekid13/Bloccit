@@ -2,6 +2,10 @@ class Api::V1::UsersController < Api::V1::BaseController
   before_action :authenticate_user
   before_action :authorize_user
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> xm_48_checkpoint_api
   def index
     users = User.all
 
@@ -14,6 +18,7 @@ class Api::V1::UsersController < Api::V1::BaseController
     render json: user.to_json, status: 200
   end
 
+<<<<<<< HEAD
   def update
     user = User.find(params[:id])
 
@@ -40,4 +45,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   def user_params
     params.require(:user).permit(:name, :email, :password, :role)
   end
+=======
+
+>>>>>>> xm_48_checkpoint_api
 end

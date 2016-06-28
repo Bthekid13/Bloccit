@@ -2,7 +2,6 @@ require 'rails_helper'
 
 include RandomData
 include SessionsHelper
-include SessionsHelper
 
  RSpec.describe CommentsController, type: :controller do
     let(:my_topic) { create(:topic) }
@@ -117,4 +116,4 @@ include SessionsHelper
      end
    end
 end
->>>>>>> checkpoint-45
+

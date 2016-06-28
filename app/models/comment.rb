@@ -20,7 +20,7 @@ class Comment < ActiveRecord::Base
   validates :user, presence: true
 ## Comment Model
 
-  default_scope {order('updated_at DESC')}
+   default_scope {order('updated_at ASC')}
 
   private
 

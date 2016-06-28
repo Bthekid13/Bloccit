@@ -13,7 +13,6 @@
 require 'rails_helper'
 include RandomData
 
-
 RSpec.describe Comment, type: :model do
 
   before do

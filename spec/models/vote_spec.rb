@@ -15,6 +15,7 @@ include RandomData
 
 RSpec.describe Vote, type: :model do
 
+<<<<<<< HEAD
   let(:topic) { create(:topic)}
   let(:user) { create(:user)}
   let(:post) { create(:post)}
@@ -26,6 +27,16 @@ RSpec.describe Vote, type: :model do
     it { is_expected.to validate_presence_of(:value)}
     it { is_expected.to validate_inclusion_of(:value).in_array([-1,1])}
   end
+=======
+  let(:topic) { create(:topic) }
+  let(:user) { create(:user) }
+  let(:post) { create(:post) }
+  let(:my_vote) {create(:vote)}
+
+
+  it { is_expected.to belong_to(:post) }
+  it { is_expected.to belong_to(:user) }
+>>>>>>> fedacbc646599728313cea0423e1c345a7bb5bc3
 
 
   describe "update_post callback" do

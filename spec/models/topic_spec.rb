@@ -26,9 +26,15 @@ RSpec.describe Topic, type: :model do
     it { is_expected.to have_many(:labels).through(:labelings)}
   end
 
+<<<<<<< HEAD
   describe 'validations' do
     it { is_expected.to validate_length_of(:name).is_at_least(5)}
     it { is_expected.to validate_length_of(:description).is_at_least(15)}
+=======
+    it "should be public by default" do
+      expect(topic.public).to be(true)
+    end
+>>>>>>> fedacbc646599728313cea0423e1c345a7bb5bc3
   end
 
   describe "scopes" do
@@ -40,10 +46,18 @@ RSpec.describe Topic, type: :model do
     describe "visible_to(user)" do
       it "returns all topics if the user is present" do
         user = User.new
+<<<<<<< HEAD
+=======
+        # #2
+>>>>>>> fedacbc646599728313cea0423e1c345a7bb5bc3
         expect(Topic.visible_to(user)).to eq(Topic.all)
       end
 
       it "returns only public topics if user is nil" do
+<<<<<<< HEAD
+=======
+        # #3
+>>>>>>> fedacbc646599728313cea0423e1c345a7bb5bc3
         expect(Topic.visible_to(nil)).to eq([@public_topic])
       end
     end

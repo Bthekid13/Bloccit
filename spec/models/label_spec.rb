@@ -13,12 +13,21 @@ include RandomData
 
 
 RSpec.describe Label, type: :model do
+<<<<<<< HEAD
   before do
     @topic = create :topic
     @user = create :user
     @post = create :post
     @label = create :label
   end
+=======
+   let(:topic) { create(:topic) }
+   let(:user) { create(:user) }
+   let(:post) { create(:post) }
+   let(:label) { create(:label) }
+
+  it { is_expected.to have_many :labelings }
+>>>>>>> fedacbc646599728313cea0423e1c345a7bb5bc3
 
   describe "associations" do
     it { is_expected.to have_many :labelings }
@@ -27,7 +36,6 @@ RSpec.describe Label, type: :model do
   end
 
   describe "labelings" do
-
     it "allows the same label to be associated with a different topic and post" do
       topic.labels << label
       post.labels << label

@@ -8,10 +8,13 @@ group :production do
 end
 
 group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'sqlite3'
 end
 
 group :development, :test do
+  gem 'pry-rails'
   gem 'rspec-rails', '~> 3.0'
   gem 'shoulda'
   gem 'factory_girl_rails'

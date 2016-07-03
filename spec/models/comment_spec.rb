@@ -15,44 +15,34 @@ include RandomData
 
 RSpec.describe Comment, type: :model do
 
-  before do
-    @topic = create :topic
-    @user = create :user
-    @post = create :post
-    @comment = create :comment
-  end
-
-  describe "associations" do
-    it { is_expected.to belong_to(@post) }
-    it { is_expected.to belong_to(@user) }
-  end
-
-  describe "validations" do
-    it { is_expected.to validate_presence_of(@user) }
-    it { is_expected.to validate_presence_of(:body) }
-    it { is_expected.to validate_length_of(:body).is_at_least(5) }
-  end
-
-
-  describe "after_create" do
-    it "sends an email to users who have favorited the post" do
-      expect(comment).to respond_to(:body)
-    end
-  end
-
-  describe "after_create" do
-
-    it "sends an email to users who have favorited the post" do
-      @user.favorites.create(post: post)
-      expect(Mailman).to receive(@comment).with(user, post, @comment).and_return(double(deliver_now: true))
-
-      @comment.save!
+    describe "attributes" do # Using Shoulda matchers http://matchers.shoulda.io/docs/v3.1.1/
+      it { should have_db_column(:body).of_type(:text) }
     end
 
-    it "does not send emails to users who haven't favorited the post" do
-      expect(Mailman).not_to receive(@comment)
-
-      @comment.save
+    describe 'associations' do # Using Shoulda matchers http://matchers.shoulda.io/docs/v3.1.1/
+      it { should belong_to(:post) }
+      it { should belong_to(:user) }
     end
+
+    describe 'validations' do
+      it { should validate_presence_of(:body) }
+      it { should validate_length_of(:body).is_at_least(5) }
+      it { should validate_presence_of(:user) }
+    end
+
+    describe "after_create" do
+      before do
+        @user = User.create!(email: 'melinda@example.com', name: 'admin', password: 'helloworld', role: 0)
+        @topic = Topic.create!(name: "Topic of discussion", description: "This has to be a little longer but not too long.")
+        @post = Post.create!(title: "A Post for all ages", body: "Texty Texting Textily", user: @user, topic: @topic)
+        @another_comment = Comment.create!(body: 'Comment Body', post: @post, user: @user)
+      end
+
+      it "does not send emails to users who haven't favorited the post" do
+        expect(Mailman).not_to receive(:new_comment)
+
+        @another_comment.save!
+      end
+    end
+
   end
-end

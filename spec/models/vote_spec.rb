@@ -15,39 +15,15 @@ include RandomData
 
 RSpec.describe Vote, type: :model do
 
-<<<<<<< HEAD
-  let(:topic) { create(:topic)}
-  let(:user) { create(:user)}
-  let(:post) { create(:post)}
-  let(:vote) { Vote.create!(value: 1, post: post, user: user)}
+  @user = FactoryGirl.build(:user)
+  @topic = Topic.create!(name: "Topic of discussion", description: "This has to be a little longer but not too long.")
+  @post = Post.create!(title: "A Post for all ages", body: "Texty Texting Textily", user: @user, topic: @topic)
+  let(:vote) { Vote.create!(value: 1, post: @post, user: @user)}
 
   describe "associations" do
     it { is_expected.to belong_to(:post)}
     it { is_expected.to belong_to(:user)}
     it { is_expected.to validate_presence_of(:value)}
     it { is_expected.to validate_inclusion_of(:value).in_array([-1,1])}
-  end
-=======
-  let(:topic) { create(:topic) }
-  let(:user) { create(:user) }
-  let(:post) { create(:post) }
-  let(:my_vote) {create(:vote)}
-
-
-  it { is_expected.to belong_to(:post) }
-  it { is_expected.to belong_to(:user) }
->>>>>>> fedacbc646599728313cea0423e1c345a7bb5bc3
-
-
-  describe "update_post callback" do
-    it "triggers update_post on save" do
-      expect(vote).to receive(:update_post).at_least(:once)
-      vote.save!
-    end
-
-    it "#update_post should call update_rank on post" do
-      expect(post).to receive(:update_rank).at_least(:once)
-      vote.save!
-    end
   end
 end

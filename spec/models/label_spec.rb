@@ -13,39 +13,27 @@ include RandomData
 
 
 RSpec.describe Label, type: :model do
-<<<<<<< HEAD
-  before do
-    @topic = create :topic
-    @user = create :user
-    @post = create :post
-    @label = create :label
-  end
-=======
-   let(:topic) { create(:topic) }
-   let(:user) { create(:user) }
-   let(:post) { create(:post) }
-   let(:label) { create(:label) }
 
-  it { is_expected.to have_many :labelings }
->>>>>>> fedacbc646599728313cea0423e1c345a7bb5bc3
+    let(:topic) { Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph) }
+    let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "helloworld", role: 1) }
+    let(:post) { topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user) }
+    let(:label) { Label.create!(name: 'Label') }
 
-  describe "associations" do
     it { is_expected.to have_many :labelings }
     it { is_expected.to have_many(:topics).through(:labelings) }
     it { is_expected.to have_many(:posts).through(:labelings) }
-  end
 
-  describe "labelings" do
-    it "allows the same label to be associated with a different topic and post" do
-      topic.labels << label
-      post.labels << label
+    describe "labelings" do
+      it "allows the same label to be associated with a different topic and post" do
+        topic.labels << label
+        post.labels << label
 
-      topic_label = topic.labels[0]
-      post_label = post.labels[0]
-
-      expect(topic_label).to eq(post_label)
+        topic_label = topic.labels[0]
+        post_label = post.labels[0]
+  # #11
+        expect(topic_label).to eql(post_label)
+      end
     end
-  end
 
   describe ".update_labels" do
     it "takes a comma delimeited string and returns an array of Labels" do

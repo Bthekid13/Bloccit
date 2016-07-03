@@ -28,17 +28,16 @@ class User < ActiveRecord::Base
   enum role: [:member, :moderator, :admin]
 
   validates :name, length: { minimum: 1, maximum: 100 }, presence: true
-
-  validates :email,
-            presence: true,
-            uniqueness: { case_sensitive: false },
-            length: { minimum: 3, maximum: 100 },
-            format: { with: EMAIL_REGEX }
   validates :password, presence: true, length: { minimum: 6 }, if: "password_digest.nil?"
   validates :password, length: { minimum: 6 }, allow_blank: true
+  validates :role, presence: true, inclusion: { in: roles.keys, message: "%{value} is not a valid role" }
 
-  validates :role, inclusion: { in: roles.keys ,
-            message: "%{value} is not a valid role" }
+  validates :email,
+  presence: true,
+  uniqueness: { case_sensitive: false },
+  length: { minimum: 3, maximum: 100 },
+  format: { with: EMAIL_REGEX }
+
 
   has_secure_password
 
@@ -52,7 +51,7 @@ class User < ActiveRecord::Base
     favorites.where(post_id: post.id).first
   end
 
-private #------------------------------------------------------------------------
+  private #------------------------------------------------------------------------
 
 
   def generate_auth_token

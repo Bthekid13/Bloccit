@@ -10,8 +10,6 @@ class PostsController < ApplicationController
   end
 
   def new
-    # This is linking to the Post model and creating a new instance of Post.
-    # Then I assigned it to an instance V. so we can use it anywhere!\
     @topic = Topic.find(params[:topic_id])
     @post = Post.new
   end
@@ -35,6 +33,7 @@ class PostsController < ApplicationController
   end
 
   def create
+    @post = Post.new
     @topic = Topic.find(params[:topic_id])
     @post = @topic.posts.build(post_params)
     @post.user = current_user
@@ -83,5 +82,5 @@ class PostsController < ApplicationController
       redirect_to [post.topic, post]
     end
   end
-  
+
 end

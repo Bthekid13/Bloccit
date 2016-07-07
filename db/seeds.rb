@@ -69,7 +69,7 @@ puts "#{Label.count} labels have been persisted."
   if 0.5 > rand()
     t.labels = rand(1..5).times.collect { labels.sample }.uniq
     t.save!
-  end 
+  end
 end
 topics = Topic.all
 puts "#{Topic.count} topics have been persisted."
@@ -84,11 +84,11 @@ puts "#{Topic.count} topics have been persisted."
     body:   RandomData.random_paragraph,
     created_at: rand(10.minutes .. 1.year).ago
   )
-  rand(1..20).times {p.votes.create!(value: [-1, 1, 1, 1].sample, user: users.sample)}
+  rand(1..20).times {p.votes.create!(value: [-1, 1].sample, user: users.sample)}
   if 0.5 > rand()
     p.labels = rand(1..5).times.collect { labels.sample }.uniq
     p.save!
-  end 
+  end
 end
 posts = Post.all
 puts "#{Post.count} posts have been persisted."
@@ -98,7 +98,7 @@ puts "#{Vote.count} votes have been cast."
 # Create Comments
 100.times do
   Comment.create!(
-    user: users.sample, 
+    user: users.sample,
     post: posts.sample,
     body: RandomData.random_paragraph
   )

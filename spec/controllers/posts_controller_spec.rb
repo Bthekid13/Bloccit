@@ -123,15 +123,14 @@ RSpec.describe PostsController, type: :controller do
       end
 
       it "assigns the new post to @post" do
-        # #22
-        post :create, topic_id: my_topic.id, post: {title: RandomData.random_sentence, body: RandomData.random_paragraph}
-        expect(assigns(:post)).to eq Post.last
+        post :create, topic_id: my_topic.id, post: {title: "yo captain whats good", body: "I have to fill this with text don't ya know"}
+        expect(assigns(:post)).to eq Post.first
       end
 
       it "redirects to the new post" do
         post :create, topic_id: my_topic.id, post: {title: RandomData.random_sentence, body: RandomData.random_paragraph}
         # #24
-        expect(response).to redirect_to [my_topic, Post.last]
+        expect(response).to redirect_to [my_topic, Post.first]
       end
     end
 

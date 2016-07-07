@@ -1,30 +1,37 @@
-== README
+#Bloccit
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+<!-- [![Build Status](https://travis-ci.org/Bthekid13/Blocipedia.svg?branch=master)](https://travis-ci.org/Bthekid13/Blocipedia)  [![Code Climate](https://codeclimate.com/github/Bthekid13/Blocipedia/badges/gpa.svg)](https://codeclimate.com/github/Bthekid13/Blocipedia) -->
 
-Things you may want to cover:
+A Reddit clone that enables users to post, vote on, share and save links and comments about various topics.
 
-* Ruby version
+Demo: [Bloccit.com] (https://wil-burke-bloccit.herokuapp.com)
 
-* System dependencies
+#Features
 
-* Configuration
+**This app is constructed with Ruby on Rails and Bootstrap**
 
-* Database creation
+*  Create posts that relate to an array of topics.
+*  Comment on other users' posts.
+*  Favorite posts you like or want to visit later.
+*  Up-vote or down-vote posts that you like or don't like.
 
-* Database initialization
+#Getting Started
 
-* How to run the test suite
+1. Sign up for a free account.
+2. Choose a topic that interests you.
+3. Create posts that relate to the topic.
+4. Up-vote and favorite the posts you like or want to visit later.
 
-* Services (job queues, cache servers, search engines, etc.)
+# Support
 
-* Deployment instructions
+If you discover any bugs, feel free to create an issue on GitHub. Please add as much information as possible to so we can squash whatever might pop up.
 
-* ...
+https://github.com/Bthekid13/Blocmarks/issues
 
+#Kudos
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Shout out to my Bloc teacher Alexander Miller (Prof. X) and the Bloc community for assisting me in making this immaculate web application.
 
-# Made with my men
+#Copyright
+
+copyright:: (c) Copyright 2015 Blocipedia. All Rights Reserved.

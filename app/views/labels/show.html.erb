@@ -8,7 +8,7 @@
       <% end %>
 
       <% @label.posts.each do |post| %>
-        Post: <%= link_to post.name, topic_post_path(post.topic, post) %>
+        Post: <%= link_to post.title, topic_post_path(post.topic, post) %>
       </div>
       <% end %>
     </div>

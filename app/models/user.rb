@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   before_create :generate_auth_token
 
   before_save { self.email &&= email.downcase }
-  before_save { self.role ||= :member }
+  before_validation { self.role ||= :member }
 
 
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -30,7 +30,8 @@ class User < ActiveRecord::Base
   validates :name, length: { minimum: 1, maximum: 100 }, presence: true
   validates :password, presence: true, length: { minimum: 6 }, if: "password_digest.nil?"
   validates :password, length: { minimum: 6 }, allow_blank: true
-  validates :role, presence: true, inclusion: { in: roles.keys, message: "%{value} is not a valid role" }
+  validates :role, presence: true,
+    inclusion: { in: roles.keys, message: "%{value} is not a valid role" }
 
   validates :email,
   presence: true,

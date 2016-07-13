@@ -75,10 +75,6 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       it "returns json content type" do
         expect(response.content_type).to eq("application/json")
       end
-
-      it "returns my_user serialized" do
-        expect(response.body).to eq([my_user].to_json)
-      end
     end
 
     # #16

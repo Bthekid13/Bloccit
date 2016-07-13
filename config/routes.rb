@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, only: [:index, :show, :create, :update]
       resources :topics, except: [:new, :edit] do
-        resources :posts,  except:  [:new, :edit]
+        resources :posts, except: [:new, :edit]
       end
       resources :comments, only: [:index, :show]
     end

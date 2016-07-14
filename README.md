@@ -1,6 +1,6 @@
 #Bloccit
 
-[![Code Climate](https://codeclimate.com/github/Bthekid13/Bloccit/badges/gpa.svg)](https://codeclimate.com/github/Bthekid13/Bloccit) 
+[![Code Climate](https://codeclimate.com/github/Bthekid13/Bloccit/badges/gpa.svg)](https://codeclimate.com/github/Bthekid13/Bloccit) [![Build Status](https://travis-ci.org/Bthekid13/Bloccit.svg?branch=master)](https://travis-ci.org/Bthekid13/Bloccit)
 
 A Reddit clone that enables users to post, vote on, share and save links and comments about various topics.
 

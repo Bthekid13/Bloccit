@@ -2,23 +2,13 @@ include RandomData
 
 #Creates users
 
-5.times do
+  unless User.find_by email:
   User.create!(
 
-  name: RandomData.random_name,
-  email: RandomData.random_email,
-  password: "remington"
-  )
-
-end
-
-#Create Personal User
-unless User.find_by email: "billyburke13@gmail.com"
-  admin = User.create!(
-    name: "Wil Burke",
-    email: "billyburke13@gmail.com",
-    password: "mustang",
-    role: 'admin'
+  name: "Bob Dylan",
+  email: "highway61@gmail.com",
+  password: "Maggies_Farm",
+  role: :admin
   )
 end
 
@@ -32,25 +22,8 @@ unless User.find_by email: "admin@example.com"
   )
 end
 
-#Create a Moderator
-unless User.find_by email: "moderator@example.com"
-  mod = User.create!(
-    name: "Moderator Example",
-    email: "moderator@example.com",
-    password: "helloworld",
-    role: 'moderator'
-  )
-end
-
-# Create a member
-unless User.find_by email: 'member@example.com'
-  member = User.create!(
-    name:     'Member Example',
-    email:    'member@example.com',
-    password: 'helloworld'
-  )
-end
 users = User.all
+
 puts "#{User.count} users have been persisted."
 
 # Create Labels

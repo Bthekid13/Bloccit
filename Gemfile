@@ -4,7 +4,6 @@ gem 'rails', '4.2.5'
 
 group :production do
   gem 'pg'
-  gem 'puma'
   gem 'rails_12factor'
 end
 
@@ -20,6 +19,7 @@ group :development, :test do
   gem 'shoulda'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
+  gem "codeclimate-test-reporter", group: :test, require: nil
 end
 
 #base gems
@@ -34,3 +34,4 @@ gem 'bcrypt'
 
 # additions
 gem "annotate"
+gem "faker"
